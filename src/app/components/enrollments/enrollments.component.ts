@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import lecturesLevel from 'src/app/json/lectures.json';
+import lecturesLevel from 'src/app/json/lectures';
 
 
 @Component({
