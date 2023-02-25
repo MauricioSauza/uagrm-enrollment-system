@@ -1,0 +1,25 @@
+<mat-toolbar class="header">
+    <button
+    class="header__menu-button"
+    mat-button>
+    <mat-icon class="header__menu-button">menu</mat-icon>
+    </button>
+    <a class="logo-container">
+        <img 
+        class="logo-container__logo"
+        src="assets/images/uagrm-escudo_1.png" 
+        alt="">
+    <span class="logo-container__title">UAGRM</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div class="profile-container">
+        <div class="profile-container__name"> {{user.NAME}} {{user.LAST_NAME}}</div>
+    </div>
+    <div>
+        <div>
+            <mat-icon class="profile-container__icon">
+                account_circle
+            </mat-icon>
+        </div>
+    </div>
+</mat-toolbar>

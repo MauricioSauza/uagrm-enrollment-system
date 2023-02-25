@@ -24,12 +24,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { LoginComponent } from './components/login/login.component';
 import { EnrollmentsComponent } from './components/enrollments/enrollments.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    EnrollmentsComponent
+    EnrollmentsComponent,
+    LayoutComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

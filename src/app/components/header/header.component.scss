@@ -1,0 +1,63 @@
+@import "src/styles/colors";
+
+.header {
+    background-color: $primary-color-dark-blue;
+    align-items: center;
+    height: 100%;
+    padding: 20px 20px 20px 20px;
+
+    &__menu-button {
+        color: $toolbar-sidenav-text-color;
+    }
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $primary-color-white;
+
+    &__logo {
+        width: 45px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+
+    &__title {
+        font-size: 20pt;
+        padding-left: 15px;
+    }
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.profile-container {
+    height: 50px;
+    width: auto;
+    align-items: center;
+    line-height: 1.2;
+    position: relative;
+    text-align: center;
+    padding-right: 20px;
+    display: flex;
+
+    &__name {
+        color: $primary-color-white;
+        font-size: 24px;
+    }
+
+    &__icon {
+        height: 50px;
+        width: auto;
+        color: $primary-color-white;
+        padding-right: 40px;
+        font-size: 40px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+

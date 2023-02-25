@@ -1,0 +1,16 @@
+@import "src/styles/colors";
+
+mat-toolbar {
+    background: $toolbar-background-color;
+    color: $toolbar-sidenav-text-color;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    &__header {
+        height: 70px;
+    }
+}

@@ -1,0 +1,13 @@
+@mixin dashboard ($marginLeft) {
+    position: relative;
+    height: auto;
+    margin-top: 2%;
+    width: 80%;
+    margin-left: $marginLeft;
+}
+
+@mixin title ($fontSize, $paddingBottom, $borderBottom) {
+    font-size: $fontSize;
+    padding-bottom: $paddingBottom;
+    border-bottom: $btn-border-primary-mat $paddingBottom;
+}
