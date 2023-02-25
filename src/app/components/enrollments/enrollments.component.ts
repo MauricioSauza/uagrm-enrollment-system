@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import lecturesLevel from 'src/app/json/lectures.json';
+import { Component, OnInit } from '@angular/core';
+import { LecturesService } from 'src/app/services/lectures.service';
+
 
 
 @Component({
@@ -7,5 +8,19 @@ import lecturesLevel from 'src/app/json/lectures.json';
   templateUrl: './enrollments.component.html',
   styleUrls: ['./enrollments.component.scss']
 })
-export class EnrollmentsComponent {
+export class EnrollmentsComponent implements OnInit {
+  public lectures: any;
+
+
+  constructor(
+    private lecturesService: LecturesService,
+  ) {}
+
+  ngOnInit(): void {
+      // this.getLectures();
+  }
+
+  // private getLectures() {
+  //   this.
+  // }
 }
