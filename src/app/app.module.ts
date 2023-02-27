@@ -26,6 +26,7 @@ import { LoginComponent } from './components/login/login.component';
 import { EnrollmentsComponent } from './components/enrollments/enrollments.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { HeaderComponent } from './components/header/header.component';
     DragDropModule,
     CdkAccordionModule,
     LayoutModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [
     {
