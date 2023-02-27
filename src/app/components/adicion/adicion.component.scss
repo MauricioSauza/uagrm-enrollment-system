@@ -1,0 +1,94 @@
+@import "src/styles/colors";
+@import "src/styles/mixins/dashboard";
+
+.container {
+    width: 90%;
+    margin: 30px auto;
+
+    &__drag-and-drop-group {
+        padding: 20px;
+        margin: 20px auto;
+        justify-content: space-between;
+        background-color: $primary-color-white;
+        border-radius: 5px;
+        border: 1.5px $table-border-color;
+        display: flex;
+    }
+
+    &__drag-and-drop {
+        width: 450px;
+        max-width: 100%;
+        margin: 20px 30px;
+        display: inline-block;
+        vertical-align: top;
+        justify-content: center;
+    }
+}
+
+.title-container {
+    position: relative;
+    width: 70%;
+
+    &__title {
+        color: $list-title-container;
+        font-weight: bold;
+        font-size: 22pt;
+        margin: 10px 0px;
+    }
+}
+
+.dashboard {
+    @include dashboard(5%);
+    
+    &__title {
+        font-size: 2em;
+        padding-bottom: 5px;
+        border-bottom: $btn-border-primary-mat solid;
+    }
+
+    &__back-icon {
+        @include back-button-icon(-3%, absolute, 38px);
+        margin-top: 0px;
+    }
+}
+
+.header-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+}
+
+.accordion-list-item {
+    max-height: max-content;
+    justify-content: space-between;
+    background-color: $primary-color-white;
+    box-sizing: border-box;
+    display: block;
+}
+
+.accordio-box-item {
+    padding: 20px;
+    color: $card-text-color;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $primary-color-white;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.text {
+    font-size: 14px;
+
+    &__error {
+        color: $primary-color-red;
+    }
+
+    &__option {
+        color: $primary-color-blue;
+    }
+
+    &__title {
+        font-weight: bold;
+        color: $primary-color-dark-blue;
+    }
+}

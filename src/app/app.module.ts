@@ -27,6 +27,7 @@ import { EnrollmentsComponent } from './components/enrollments/enrollments.compo
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdicionComponent } from './components/adicion/adicion.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     EnrollmentsComponent,
     LayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    AdicionComponent
   ],
   imports: [
     BrowserModule,
