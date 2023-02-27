@@ -28,6 +28,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdicionComponent } from './components/adicion/adicion.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { AdicionComponent } from './components/adicion/adicion.component';
     CdkAccordionModule,
     LayoutModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     {

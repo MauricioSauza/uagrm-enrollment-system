@@ -23,6 +23,8 @@
         vertical-align: top;
         justify-content: center;
     }
+
+    
 }
 
 .title-container {
@@ -92,3 +94,9 @@
         color: $primary-color-dark-blue;
     }
 }
+.tooltip{
+    font-size: 14px;
+  color: white;
+  background-color: blue;
+  border-radius: 4px;
+} 

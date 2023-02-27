@@ -4,7 +4,12 @@
     </div>
     <div cdkDropListGroup class="container__drag-and-drop-group">
         <div class="container__drag-and-drop">
-            <h2>Materias Ofertadas</h2>
+            <h2>Materias Ofertadas
+                <mat-icon
+                    matTooltip="Aqui se mostraran las materias ofertadas para tu nivel, Recuerda: Puedes arrastrar el grupo elegido a 'Materias Elegidas', las materias que aparezcan en color azul son opciones habilitadas para levantamiento"
+                    matTooltipPosition="after"
+                    matTooltipClass="tooltip">info</mat-icon>
+            </h2>
             <mat-accordion class="headers-align" multi>
                 <div *ngFor="let materia of materias" class="accordion-list-item">
                     <mat-expansion-panel>
@@ -13,9 +18,11 @@
                                 {{materia.nombre}} - {{materia.sigla}}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
+                        <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item"
+                            (cdkDropListDropped)="drop($event)">
                             <div cdkDrag class="box-item" *ngFor="let paralells of materia.paralelos">
-                                GRUPO - {{paralells.grupo}} || DOCENTE - {{paralells.docente}} || CUPOS - {{paralells.cupos}}          
+                                GRUPO - {{paralells.grupo}} || DOCENTE - {{paralells.docente}} || CUPOS -
+                                {{paralells.cupos}}
                             </div>
                         </div>
                     </mat-expansion-panel>
@@ -28,7 +35,7 @@
                 <div cdkDrag class="box-item" *ngFor="let lectures of lecturesPicked">
                     Puta mierda no da
                 </div>
-            </div>              
+            </div>
         </div>
         <div class="container__drag-and-drop">
             <h2>Materias Inscritas</h2>
@@ -40,15 +47,17 @@
                                 {{materia.nombre}} - {{materia.sigla}}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
+                        <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item"
+                            (cdkDropListDropped)="drop($event)">
                             <div cdkDrag class="box-item" *ngFor="let paralells of materia.paralelos">
-                                GRUPO - {{paralells.grupo}} || DOCENTE - {{paralells.docente}} || CUPOS - {{paralells.cupos}}          
+                                GRUPO - {{paralells.grupo}} || DOCENTE - {{paralells.docente}} || CUPOS -
+                                {{paralells.cupos}}
                             </div>
                         </div>
                     </mat-expansion-panel>
                 </div>
             </mat-accordion>
         </div>
-        
+
     </div>
 </div>
