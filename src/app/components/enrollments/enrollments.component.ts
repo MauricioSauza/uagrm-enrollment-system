@@ -1,5 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { NumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
 import { LecturesService } from 'src/app/services/lectures.service';
 
 
@@ -38,16 +40,39 @@ import { LecturesService } from 'src/app/services/lectures.service';
   styleUrls: ['./enrollments.component.scss']
 })
 export class EnrollmentsComponent implements OnInit {
-  public materias: any;
-  public paralells: any;
-  public lecturesPicked: any;
+  public materias: ILectures[];
+  public paralelos: IParallels[];
+  public lecturesPicked: ILectures[] = [
+    {
+      nombre: '',
+      sigla: '',
+      semestre: 0,
+      paralelos: [
+        {
+          disabled: true,
+          nombre: '',
+          sigla: '',
+          semestre: 0,
+          grupo: '',
+          docente: '',
+          cupos: 0,
+          horario: [{
+            dia: '',
+            hora_inicio: '',
+            hora_fin: '',
+          }]
+
+        }
+      ]
+    }
+  ]
 
   constructor(
     private lecturesService: LecturesService
-  ) {}
-  
+  ) { }
+
   ngOnInit(): void {
-      this.getLectures();
+    this.getLectures();
   }
 
   private getLectures() {
@@ -58,23 +83,14 @@ export class EnrollmentsComponent implements OnInit {
           sigla: item.sigla,
           semestre: item.semestre,
           paralelos: item.paralelos
-        }     
-      });
-      this.paralells = this.materias.map((item:any) => {
-        return {
-          paralelos: item.paralelos
         }
       });
-      console.log(this.paralells);
     });
   };
 
-  drop(event: CdkDragDrop<any>) {
-    if(event.previousContainer.data === this.lecturesPicked
-      ) {
-        transferArrayItem(
-          event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex
-        );
-      } 
+  drop(event: CdkDragDrop<IParallels[]>) {
+    transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    console.log(event.previousContainer.data);
+    console.log(event.container.data);
   }
 }

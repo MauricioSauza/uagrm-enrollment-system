@@ -93,5 +93,26 @@
     }
 }
 
+.description-labels {
+    margin: 5px 5px 5px 5px;
+
+    &__time {
+        display: flex;
+        padding-right: 8px;
+    }
+}
+
+.lectures-card {
+    margin: 20px 10px 20px 10px;
+
+    &__description-labels {
+        margin: 5px 5px 5px 5px;
+    }
+
+    &__time {
+        padding-right: 8px;
+    }
+}
+
 
 

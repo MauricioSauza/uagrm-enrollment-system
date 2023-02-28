@@ -17,4 +17,8 @@ export class LecturesService implements OnInit {
   public getLectures() {
     return this.http.get("http://localhost:3000/lectures");
   }
+
+  public getParallels() {
+    return this.http.get("http://localhost:3000/lectures/parallels");
+  }
 }

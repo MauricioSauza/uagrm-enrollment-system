@@ -28,7 +28,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdicionComponent } from './components/adicion/adicion.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -63,7 +62,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LayoutModule,
     MatIconModule,
     HttpClientModule,
-    FontAwesomeModule
   ],
   providers: [
     {

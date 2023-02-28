@@ -14,8 +14,23 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
-                            <div cdkDrag class="box-item" *ngFor="let paralells of materia.paralelos">
-                                GRUPO - {{paralells.grupo}} || DOCENTE - {{paralells.docente}} || CUPOS - {{paralells.cupos}}          
+                            <div cdkDrag class="box-item" *ngFor="let paralelo of materia.paralelos">
+                               <div class="lectures-card">
+                                    <mat-panel-title class="text__title">{{materia.nombre}} - {{materia.sigla}} </mat-panel-title>
+                                    <div class="description-labels">
+                                        <b>Docente:</b> {{paralelo.docente}}        
+                                    </div>
+                                    <div class="description-labels">
+                                        <b>Grupo:</b> {{paralelo.grupo}}
+                                    </div>
+                                    <div class="description-labels">
+                                        <b>Cupos:</b> {{paralelo.cupos}}          
+                                    </div>
+                                    <b>Horario:</b>
+                                    <div class="description-labels__time" *ngFor="let horario of paralelo.horario">
+                                        <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                                    </div>
+                               </div>          
                             </div>
                         </div>
                     </mat-expansion-panel>
@@ -24,11 +39,33 @@
         </div>
         <div class="container__drag-and-drop">
             <h2>Materias elegidas</h2>
-            <div cdkDropList [cdkDropListData]="lecturesPicked" class="list-item" (cdkDropListDropped)="drop($event)">
-                <div cdkDrag class="box-item" *ngFor="let lectures of lecturesPicked">
-                    Puta mierda no da
-                </div>
-            </div>              
+            <mat-label class="text__error" *ngIf="lecturesPicked.length === 1">
+                Arraste una materia de la columna "materias ofertadas"
+            </mat-label>
+            
+            <div *ngFor="let materia of lecturesPicked" class="accordion-list-item">
+                <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
+                    <div cdkDrag class="box-item" *ngFor="let lectures of materia.paralelos" [cdkDragData]="lectures" [cdkDragDisabled]="lectures.disabled">
+                        <div class="lectures-card">
+                            <mat-panel-title class="text__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
+                            <div class="lectures-card__description-labels">
+                                <b>Docente:</b> {{lectures.docente}}        
+                            </div>
+                            <div class="lectures-card__description-labels">
+                                <b>Grupo:</b> {{lectures.grupo}}
+                            </div>
+                            <div class="lectures-card__description-labels">
+                                <b>Cupos:</b> {{lectures.cupos}}          
+                            </div>
+                            <b>Horario:</b>
+                            <div *ngFor="let horario of lectures.horario">
+                                <b class="lectures-card__time">{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                            </div>
+                       </div>          
+                    </div>
+                </div> 
+            </div>
+                     
         </div>
     </div>
 </div>

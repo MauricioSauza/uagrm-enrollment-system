@@ -1,7 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { LecturesService } from 'src/app/services/lectures.service';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,7 +13,6 @@ export class AdicionComponent implements OnInit {
   public materias: any;
   public paralells: any;
   public lecturesPicked: any; 
-  faCircleInfo = faCircleInfo;
   
   constructor(
     private lecturesService: LecturesService
