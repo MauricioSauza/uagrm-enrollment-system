@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
@@ -43,6 +43,7 @@ export class EnrollmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLectures();
+    console.log(this.lecturesPicked);
   }
 
   private getLectures() {
@@ -60,6 +61,8 @@ export class EnrollmentsComponent implements OnInit {
 
   drop(event: CdkDragDrop<IParallels[]>) {
       if(event.previousContainer.data !== event.container.data) {
+        console.log(event.previousContainer.data);
+        console.log(event.container.data);
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
         const cantMaterias8Sem = event.container.data.filter(item => item.semestre === 8).length;
         if (cantMaterias8Sem >= 3) {
@@ -67,6 +70,7 @@ export class EnrollmentsComponent implements OnInit {
         }
       } 
   }
+
   openModal(titulo: string , contenido:string ) {
     const dialogRef = this.dialog.open(ModalComponentComponent);
     dialogRef.componentInstance.titulo = titulo;

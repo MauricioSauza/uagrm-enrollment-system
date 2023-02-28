@@ -30,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdicionComponent } from './components/adicion/adicion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 
 @NgModule({
@@ -65,6 +67,7 @@ import { ModalComponentComponent } from './components/modal-component/modal-comp
     LayoutModule,
     MatIconModule,
     HttpClientModule,
+    ScrollingModule
   ],
   providers: [
     {
