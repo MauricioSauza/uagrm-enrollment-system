@@ -122,7 +122,7 @@
             </h2>
             <div *ngFor="let materia of enrollments" class="accordion-list-item">
                 <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
-                    <div cdkDrag class="box-item" *ngFor="let lectures of materia.paralelos" [cdkDragData]="lectures" [cdkDragDisabled]="lectures.disabled">
+                    <div cdkDrag class="box-item" *ngFor="let lectures of materia.paralelos" [cdkDragData]="lectures">
                         <div class="lectures-card" *ngIf="lectures.semestre <= 7; else levantamiento">
                             <mat-panel-title class="lectures-card__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
                             <div class="lectures-card__description-labels">
