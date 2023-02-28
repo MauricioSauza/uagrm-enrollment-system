@@ -1,6 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { LecturesService } from 'src/app/services/lectures.service';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponentComponent } from '../modal-component/modal-component.component';
 
 
 @Component({
@@ -15,7 +18,8 @@ export class AdicionComponent implements OnInit {
   public lecturesPicked: any; 
   
   constructor(
-    private lecturesService: LecturesService
+    private lecturesService: LecturesService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -48,5 +52,19 @@ export class AdicionComponent implements OnInit {
         );
       } 
   }
-
+  openModal(titulo: string , contenido:string ) {
+    const dialogRef = this.dialog.open(ModalComponentComponent);
+    dialogRef.componentInstance.titulo = titulo;
+    dialogRef.componentInstance.contenido = contenido;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalComponentComponent);
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
