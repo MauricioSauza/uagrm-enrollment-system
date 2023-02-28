@@ -9,28 +9,53 @@
                 <div *ngFor="let materia of materias" class="accordion-list-item">
                     <mat-expansion-panel>
                         <mat-expansion-panel-header class="accordion-box-item">
-                            <mat-panel-title class="text__title">
+                            <mat-panel-title class="text__title" *ngIf="materia.semestre <= 7; else levantamiento">
                                 {{materia.nombre}} - {{materia.sigla}}
                             </mat-panel-title>
+                            <ng-template #levantamiento>
+                                <mat-panel-title class="text-title-levantamiento">
+                                    {{materia.nombre}} - {{materia.sigla}}
+                                </mat-panel-title>
+                            </ng-template>
+                            
                         </mat-expansion-panel-header>
-                        <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
+                        <div cdkDropList [cdkDropListData]="materia.paralelos" class="accordion-list-item" (cdkDropListDropped)="drop($event)">
                             <div cdkDrag class="box-item" *ngFor="let paralelo of materia.paralelos">
-                               <div class="lectures-card">
-                                    <mat-panel-title class="text__title">{{materia.nombre}} - {{materia.sigla}} </mat-panel-title>
-                                    <div class="description-labels">
+                               <div class="lectures-card" *ngIf="paralelo.semestre <= 7; else levantamiento">
+                                    <mat-panel-title class="lectures-card__title">{{materia.nombre}} - {{materia.sigla}} </mat-panel-title>
+                                    <div class="lectures-card__description-labels">
                                         <b>Docente:</b> {{paralelo.docente}}        
                                     </div>
-                                    <div class="description-labels">
+                                    <div class="lectures-card__description-labels">
                                         <b>Grupo:</b> {{paralelo.grupo}}
                                     </div>
-                                    <div class="description-labels">
+                                    <div class="lectures-card__description-labels">
                                         <b>Cupos:</b> {{paralelo.cupos}}          
                                     </div>
                                     <b>Horario:</b>
-                                    <div class="description-labels__time" *ngFor="let horario of paralelo.horario">
+                                    <div class="lectures-card__description-labels__time" *ngFor="let horario of paralelo.horario">
                                         <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
                                     </div>
-                               </div>          
+                               </div> 
+                               <ng-template #levantamiento>
+                                <div class="lectures-card-levantamiento">
+                                    <mat-panel-title class="lectures-card-levantamiento__title">{{materia.nombre}} - {{materia.sigla}} </mat-panel-title>
+                                    <div class="lectures-card-levantamiento__description-labels">
+                                        <b>Docente:</b> {{paralelo.docente}}        
+                                    </div>
+                                    <div class="lectures-card-levantamiento__description-labels">
+                                        <b>Grupo:</b> {{paralelo.grupo}}
+                                    </div>
+                                    <div class="lectures-card-levantamiento__description-labels">
+                                        <b>Cupos:</b> {{paralelo.cupos}}          
+                                    </div>
+                                    <b>Horario:</b>
+                                    <div class="lectures-card-levantamiento__description-labels__time" *ngFor="let horario of paralelo.horario">
+                                        <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                                    </div>
+                               </div> 
+                               </ng-template>
+                                        
                             </div>
                         </div>
                     </mat-expansion-panel>
@@ -39,15 +64,15 @@
         </div>
         <div class="container__drag-and-drop">
             <h2>Materias elegidas</h2>
-            <mat-label class="text__error" *ngIf="lecturesPicked.length === 1">
+            <mat-label class="text__error" *ngIf="lecturesPicked.length <= 1">
                 Arraste una materia de la columna "materias ofertadas"
             </mat-label>
             
             <div *ngFor="let materia of lecturesPicked" class="accordion-list-item">
                 <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
                     <div cdkDrag class="box-item" *ngFor="let lectures of materia.paralelos" [cdkDragData]="lectures" [cdkDragDisabled]="lectures.disabled">
-                        <div class="lectures-card">
-                            <mat-panel-title class="text__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
+                        <div class="lectures-card" *ngIf="lectures.semestre <= 7; else levantamiento">
+                            <mat-panel-title class="lectures-card__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
                             <div class="lectures-card__description-labels">
                                 <b>Docente:</b> {{lectures.docente}}        
                             </div>
@@ -58,14 +83,31 @@
                                 <b>Cupos:</b> {{lectures.cupos}}          
                             </div>
                             <b>Horario:</b>
-                            <div *ngFor="let horario of lectures.horario">
-                                <b class="lectures-card__time">{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                            <div class="lectures-card__description-labels__time" *ngFor="let horario of lectures.horario">
+                                <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
                             </div>
-                       </div>          
+                       </div> 
+                       <ng-template #levantamiento>
+                        <div class="lectures-card-levantamiento">
+                            <mat-panel-title class="lectures-card-levantamiento__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
+                            <div class="lectures-card-levantamiento__description-labels">
+                                <b>Docente:</b> {{lectures.docente}}        
+                            </div>
+                            <div class="lectures-card-levantamiento__description-labels">
+                                <b>Grupo:</b> {{lectures.grupo}}
+                            </div>
+                            <div class="lectures-card-levantamiento__description-labels">
+                                <b>Cupos:</b> {{lectures.cupos}}          
+                            </div>
+                            <b>Horario:</b>
+                            <div class="lectures-card-levantamiento__description-labels__time" *ngFor="let horario of lectures.horario">
+                                <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                            </div>
+                       </div> 
+                       </ng-template>    
                     </div>
                 </div> 
-            </div>
-                     
+            </div>            
         </div>
     </div>
 </div>

@@ -13,4 +13,9 @@ mat-toolbar {
     &__header {
         height: 70px;
     }
+
+    &__content {
+        flex: auto;
+        background-color: $layout-content-color;
+    }
 }
