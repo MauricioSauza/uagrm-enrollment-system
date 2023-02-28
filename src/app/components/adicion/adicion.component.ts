@@ -15,6 +15,8 @@ import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
 })
 export class AdicionComponent implements OnInit {
   public materias: ILectures[];
+  public enrollments: ILectures[];
+  public lecturesWithEnrollments: ILectures[];
   public lecturesPicked: ILectures[] = [{
     nombre: '',
     sigla: '',
@@ -44,10 +46,39 @@ export class AdicionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLectures();
+    this.getEnrollments();
+    this.getLecturesWithEnrollments();
   }
   private getLectures() {
     this.lecturesService.getLectures().subscribe((response: any) => {
       this.materias = response.map(function (item: any) {
+        return {
+          nombre: item.nombre,
+          sigla: item.sigla,
+          semestre: item.semestre,
+          paralelos: item.paralelos
+        }
+      });
+    });
+  };
+
+  private getEnrollments() {
+    this.lecturesService.getEnrollments().subscribe((response: any) => {
+      this.enrollments = response.map(function (item: any) {
+        return {
+          disabled: true,
+          nombre: item.nombre,
+          sigla: item.sigla,
+          semestre: item.semestre,
+          paralelos: item.paralelos
+        }
+      });
+    });
+  };
+
+  private getLecturesWithEnrollments() {
+    this.lecturesService.getLecturesWithEnrollment().subscribe((response: any) => {
+      this.lecturesWithEnrollments = response.map(function (item: any) {
         return {
           nombre: item.nombre,
           sigla: item.sigla,

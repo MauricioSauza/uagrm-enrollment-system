@@ -96,6 +96,8 @@
 
     &__title {
         font-weight: bold;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -148,5 +150,17 @@
     }
 }
 
+.action-buttons {
+    color: $primary-color-white;
+    width: 20%;
+    margin: 10px;
+    padding: 0px 5px 0px 5px;
+    &--cancel {
+        background-color: $secondary-color-coral-red;
+    }
+    &--submit {
+        background-color: $primary-color-blue;
+    }
+}
 
 

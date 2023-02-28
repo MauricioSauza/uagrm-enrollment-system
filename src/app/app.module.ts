@@ -31,6 +31,8 @@ import { AdicionComponent } from './components/adicion/adicion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
 import { PantallaImprimirComponent } from './components/pantalla-imprimir/pantalla-imprimir.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { PantallaImprimirComponent } from './components/pantalla-imprimir/pantal
     LayoutModule,
     MatIconModule,
     HttpClientModule,
+    ScrollingModule
   ],
   providers: [
     {

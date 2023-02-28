@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
@@ -47,6 +47,7 @@ export class EnrollmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLectures();
+    console.log(this.lecturesPicked);
   }
 
   private getLectures() {

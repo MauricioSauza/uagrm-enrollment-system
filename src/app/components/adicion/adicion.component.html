@@ -11,7 +11,7 @@
                 (click)="openModal('Información Inscripción', 'En la sección de Materias Ofertadas encontraras las materias disponibles para tu inscripcion, para seleccionar un grupo puedes arrastrarlo hasta la seccion de Materias Seleccionadas, las materias que aparezcan en color azul son las disponibles para levantamiento')">info</mat-icon>
             </h2>
             <mat-accordion class="headers-align" multi>
-                <div *ngFor="let materia of materias" class="accordion-list-item">
+                <div *ngFor="let materia of lecturesWithEnrollments" class="accordion-list-item">
                     <mat-expansion-panel>
                         <mat-expansion-panel-header class="accordion-box-item">
                             <mat-panel-title class="text__title" *ngIf="materia.semestre <= 7; else levantamiento">
@@ -72,9 +72,7 @@
                 <mat-icon
                 (click)="openModal('Información Inscripción', 'En la sección de Materias Ofertadas encontraras las materias disponibles para tu inscripcion, para seleccionar un grupo puedes arrastrarlo hasta la seccion de Materias Seleccionadas, las materias que aparezcan en color azul son las disponibles para levantamiento')">info</mat-icon>
             </h2>
-            <mat-label class="text__error" *ngIf="lecturesPicked.length <= 1">
-                Arraste una materia de la columna "materias ofertadas"
-            </mat-label>
+            <button mat-raised-button type="submit" class="action-buttons action-buttons--submit">Guardar</button>
             
             <div *ngFor="let materia of lecturesPicked" class="accordion-list-item">
                 <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
@@ -122,6 +120,46 @@
                 <mat-icon
                 (click)="openModal('Información Inscripción', 'En la sección de Materias Ofertadas encontraras las materias disponibles para tu inscripcion, para seleccionar un grupo puedes arrastrarlo hasta la seccion de Materias Seleccionadas, las materias que aparezcan en color azul son las disponibles para levantamiento')">info</mat-icon>
             </h2>
+            <div *ngFor="let materia of enrollments" class="accordion-list-item">
+                <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
+                    <div cdkDrag class="box-item" *ngFor="let lectures of materia.paralelos" [cdkDragData]="lectures" [cdkDragDisabled]="lectures.disabled">
+                        <div class="lectures-card" *ngIf="lectures.semestre <= 7; else levantamiento">
+                            <mat-panel-title class="lectures-card__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
+                            <div class="lectures-card__description-labels">
+                                <b>Docente:</b> {{lectures.docente}}        
+                            </div>
+                            <div class="lectures-card__description-labels">
+                                <b>Grupo:</b> {{lectures.grupo}}
+                            </div>
+                            <div class="lectures-card__description-labels">
+                                <b>Cupos:</b> {{lectures.cupos}}          
+                            </div>
+                            <b>Horario:</b>
+                            <div class="lectures-card__description-labels__time" *ngFor="let horario of lectures.horario">
+                                <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                            </div>
+                       </div> 
+                       <ng-template #levantamiento>
+                        <div class="lectures-card-levantamiento">
+                            <mat-panel-title class="lectures-card-levantamiento__title">{{lectures.nombre}} - {{lectures.sigla}} </mat-panel-title>
+                            <div class="lectures-card-levantamiento__description-labels">
+                                <b>Docente:</b> {{lectures.docente}}        
+                            </div>
+                            <div class="lectures-card-levantamiento__description-labels">
+                                <b>Grupo:</b> {{lectures.grupo}}
+                            </div>
+                            <div class="lectures-card-levantamiento__description-labels">
+                                <b>Cupos:</b> {{lectures.cupos}}          
+                            </div>
+                            <b>Horario:</b>
+                            <div class="lectures-card-levantamiento__description-labels__time" *ngFor="let horario of lectures.horario">
+                                <b>{{horario.dia}}: </b>  {{horario.hora_inicio}} - {{horario.hora_fin}}
+                            </div>
+                       </div> 
+                       </ng-template>    
+                    </div>
+                </div> 
+            </div>      
         </div>
     </div>
 </div>
