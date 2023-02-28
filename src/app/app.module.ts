@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdicionComponent } from './components/adicion/adicion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
+import { PantallaImprimirComponent } from './components/pantalla-imprimir/pantalla-imprimir.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
@@ -42,7 +43,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     LayoutComponent,
     HeaderComponent,
     AdicionComponent,
-    ModalComponentComponent
+    ModalComponentComponent,
+    PantallaImprimirComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
 import { LecturesService } from 'src/app/services/lectures.service';
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-enrollments',
@@ -37,8 +39,10 @@ export class EnrollmentsComponent implements OnInit {
   ]
 
   constructor(
+    private route: ActivatedRoute,
     private lecturesService: LecturesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -60,23 +64,25 @@ export class EnrollmentsComponent implements OnInit {
   };
 
   drop(event: CdkDragDrop<IParallels[]>) {
-      if(event.previousContainer.data !== event.container.data) {
-        console.log(event.previousContainer.data);
-        console.log(event.container.data);
-        transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-        const cantMaterias8Sem = event.container.data.filter(item => item.semestre === 8).length;
-        if (cantMaterias8Sem >= 3) {
-          this.openModal("Error", "Haz alcanzado el limite de materias de levantamiento permitidas");
-        }
-      } 
+    if (event.previousContainer.data !== event.container.data) {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      const cantMaterias8Sem = event.container.data.filter(item => item.semestre === 8).length;
+      if (cantMaterias8Sem >= 3) {
+        this.openModal("Error", "Haz alcanzado el limite de materias de levantamiento permitidas");
+      }
+    }
   }
-
-  openModal(titulo: string , contenido:string ) {
+  openModal(titulo: string, contenido: string) {
     const dialogRef = this.dialog.open(ModalComponentComponent);
     dialogRef.componentInstance.titulo = titulo;
     dialogRef.componentInstance.contenido = contenido;
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+  verPDF(): void {
+    // ... código para obtener los grupos seleccionados
+    const paralelos = JSON.stringify(this.lecturesPicked)[0] as unknown as { paralelos: any[] };
+    this.router.navigate(['/imprimir'], { queryParams: { grupos: JSON.stringify(this.lecturesPicked) } });
   }
 }

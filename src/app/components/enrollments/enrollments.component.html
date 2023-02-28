@@ -81,6 +81,10 @@
                 <mat-icon
                     (click)="openModal('Información Inscripción', 'En la sección de Materias Ofertadas encontraras las materias disponibles para tu inscripcion, para seleccionar un grupo puedes arrastrarlo hasta la seccion de Materias Seleccionadas, las materias que aparezcan en color azul son las disponibles para levantamiento')">feedback</mat-icon>
             </h2>
+            <mat-label class="text__error" *ngIf="lecturesPicked.length <= 1">
+                Arraste una materia de la columna "materias ofertadas"
+            </mat-label>
+            <button (click)="verPDF()" >Inscribir</button>
            <button mat-raised-button type="submit" class="action-buttons action-buttons--submit">Guardar</button>
 
             <div *ngFor="let materia of lecturesPicked" class="accordion-list-item">
