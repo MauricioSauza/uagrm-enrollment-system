@@ -84,7 +84,6 @@
             <mat-label class="text__error" *ngIf="lecturesPicked.length <= 1">
                 Arraste una materia de la columna "materias ofertadas"
             </mat-label>
-            <button (click)="verPDF()" >Inscribir</button>
            <button mat-raised-button type="submit" class="action-buttons action-buttons--submit">Guardar</button>
 
             <div *ngFor="let materia of lecturesPicked" class="accordion-list-item">

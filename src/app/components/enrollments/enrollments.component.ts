@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
 import { LecturesService } from 'src/app/services/lectures.service';
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
-import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-enrollments',
@@ -39,10 +37,8 @@ export class EnrollmentsComponent implements OnInit {
   ]
 
   constructor(
-    private route: ActivatedRoute,
     private lecturesService: LecturesService,
     public dialog: MatDialog,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -79,10 +75,5 @@ export class EnrollmentsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
-  verPDF(): void {
-    // ... código para obtener los grupos seleccionados
-    const paralelos = JSON.stringify(this.lecturesPicked)[0] as unknown as { paralelos: any[] };
-    this.router.navigate(['/imprimir'], { queryParams: { grupos: JSON.stringify(this.lecturesPicked) } });
   }
 }
