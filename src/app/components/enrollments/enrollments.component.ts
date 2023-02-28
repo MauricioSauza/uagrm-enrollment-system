@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
 import { LecturesService } from 'src/app/services/lectures.service';
+import { ModalComponentComponent } from '../modal-component/modal-component.component';
 
 @Component({
   selector: 'app-enrollments',
@@ -35,7 +37,8 @@ export class EnrollmentsComponent implements OnInit {
   ]
 
   constructor(
-    private lecturesService: LecturesService
+    private lecturesService: LecturesService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +61,18 @@ export class EnrollmentsComponent implements OnInit {
   drop(event: CdkDragDrop<IParallels[]>) {
       if(event.previousContainer.data !== event.container.data) {
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+        const cantMaterias8Sem = event.container.data.filter(item => item.semestre === 8).length;
+        if (cantMaterias8Sem >= 3) {
+          this.openModal("Error", "Haz alcanzado el limite de materias de levantamiento permitidas");
+        }
       } 
+  }
+  openModal(titulo: string , contenido:string ) {
+    const dialogRef = this.dialog.open(ModalComponentComponent);
+    dialogRef.componentInstance.titulo = titulo;
+    dialogRef.componentInstance.contenido = contenido;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
