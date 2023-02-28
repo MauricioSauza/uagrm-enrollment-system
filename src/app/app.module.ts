@@ -29,6 +29,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdicionComponent } from './components/adicion/adicion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalComponentComponent } from './components/modal-component/modal-component.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EnrollmentsComponent,
     LayoutComponent,
     HeaderComponent,
-    AdicionComponent
+    AdicionComponent,
+    ModalComponentComponent
   ],
   imports: [
     BrowserModule,
