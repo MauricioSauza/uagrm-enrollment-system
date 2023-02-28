@@ -75,7 +75,7 @@
             <mat-label class="text__error" *ngIf="lecturesPicked.length <= 1">
                 Arraste una materia de la columna "materias ofertadas"
             </mat-label>
-            
+            <button (click)="verPDF()" >Inscribir</button>
             <div *ngFor="let materia of lecturesPicked" class="accordion-list-item">
                 <div cdkDropList [cdkDropListData]="materia.paralelos" class="list-item" (cdkDropListDropped)="drop($event)">
                     <div cdkDrag class="box-item" *ngFor="let lectures of materia.paralelos" [cdkDragData]="lectures" [cdkDragDisabled]="lectures.disabled">
