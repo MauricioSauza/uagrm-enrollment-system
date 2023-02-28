@@ -1,6 +1,12 @@
 @import "src/styles/colors";
 @import "src/styles/mixins/dashboard";
 
+.cdk-drag-disabled {
+    background: $primary-color-white;
+    cursor: default;
+    color: $primary-color-white; 
+}
+
 .container {
     width: 90%;
     margin: 30px auto;
@@ -23,8 +29,6 @@
         vertical-align: top;
         justify-content: center;
     }
-
-    
 }
 
 .title-container {
@@ -64,6 +68,7 @@
     background-color: $primary-color-white;
     box-sizing: border-box;
     display: block;
+    cursor: move;
 }
 
 .accordio-box-item {
@@ -91,12 +96,57 @@
 
     &__title {
         font-weight: bold;
-        color: $primary-color-dark-blue;
     }
 }
-.tooltip{
+
+.text-title-levantamiento {
     font-size: 14px;
-  color: white;
-  background-color: blue;
-  border-radius: 4px;
-} 
+    font-weight: bold;
+    color: $primary-color-blue;
+}
+
+.description-labels {
+    margin: 5px 5px 5px 5px;
+
+    &__time {
+        display: flex;
+        padding-right: 8px;
+    }
+}
+
+.lectures-card {
+    margin: 20px 10px 20px 10px;
+    &__title {
+        font-weight: bold;
+    }
+
+    &__description-labels {
+        margin: 5px 5px 5px 5px;
+    }
+
+    &__time {
+        margin: 5px 5px 5px 5px;
+        padding-right: 8px;
+    }
+}
+
+.lectures-card-levantamiento {
+    margin: 20px 10px 20px 10px;
+    color: $primary-color-blue;
+    &__title {
+        font-weight: bold;
+        color: $primary-color-blue;
+    }
+
+    &__description-labels {
+        margin: 5px 5px 5px 5px;
+    }
+
+    &__time {
+        margin: 5px 5px 5px 5px;
+        padding-right: 8px;
+    }
+}
+
+
+

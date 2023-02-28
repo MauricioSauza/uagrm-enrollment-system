@@ -4,6 +4,7 @@ import { LecturesService } from 'src/app/services/lectures.service';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
+import { ILectures, IParallels } from 'src/app/interfaces/materias-interfaces';
 
 
 @Component({
@@ -13,10 +14,29 @@ import { ModalComponentComponent } from '../modal-component/modal-component.comp
   encapsulation: ViewEncapsulation.None
 })
 export class AdicionComponent implements OnInit {
-  public materias: any;
-  public paralells: any;
-  public lecturesPicked: any; 
-  
+  public materias: ILectures[];
+  public lecturesPicked: ILectures[] = [{
+    nombre: '',
+    sigla: '',
+    semestre: 0,
+    paralelos: [
+      {
+        disabled: true,
+        nombre: '',
+        sigla: '',
+        semestre: 0,
+        grupo: 'SS',
+        docente: 'Nombre del docente',
+        cupos: 0,
+        horario: [{
+          dia: 'dom',
+          hora_inicio: '00:00',
+          hora_fin: '00:00',
+        }]
+      }
+    ]
+  }
+]
   constructor(
     private lecturesService: LecturesService,
     public dialog: MatDialog
@@ -33,25 +53,20 @@ export class AdicionComponent implements OnInit {
           sigla: item.sigla,
           semestre: item.semestre,
           paralelos: item.paralelos
-        }     
-      });
-      this.paralells = this.materias.map((item:any) => {
-        return {
-          paralelos: item.paralelos
         }
       });
-      console.log(this.paralells);
     });
   };
 
-  drop(event: CdkDragDrop<any>) {
-    if(event.previousContainer.data === this.lecturesPicked
-      ) {
-        transferArrayItem(
-          event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex
-        );
-      } 
-  }
+  drop(event: CdkDragDrop<IParallels[]>) {
+    if(event.previousContainer.data !== event.container.data) {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      const cantMaterias8Sem = event.container.data.filter(item => item.semestre === 8).length;
+      if (cantMaterias8Sem >= 3) {
+        this.openModal("Error", "Haz alcanzado el limite de materias de levantamiento permitidas");
+      }
+    } 
+}
   openModal(titulo: string , contenido:string ) {
     const dialogRef = this.dialog.open(ModalComponentComponent);
     dialogRef.componentInstance.titulo = titulo;
